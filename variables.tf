@@ -25,3 +25,7 @@ variable "path" {
   description = "private key"
   default     = "ngnixkey.pem"
 }
+
+variable "vpc_id" {
+  default = "vpc-002847ce027cbe983"
+}

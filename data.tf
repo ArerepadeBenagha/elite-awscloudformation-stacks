@@ -16,29 +16,36 @@ data "aws_ami" "ubuntu" {
 
 
 ########------- Bastion-SG -------------##########
-data "aws_security_group" "bastion-sg" {
-  id = "sg-0dda1d8ebfac503f0"
+data "aws_security_group" "webserver-sg" {
+  id = "sg-0ebee6d9cc96e859b"
 }
-data "aws_subnet" "bastion-subnet-public" {
-  id = "subnet-01c04b746a464ca8a"
+data "aws_subnet" "public-subnet-2" {
+  id = "subnet-0ad066a9178119cbb"
 }
-data "aws_subnet" "bastion-subnet" {
-  id = "subnet-07b7ef9b7829d5fb9"
+data "aws_subnet" "private-subnet-2" {
+  id = "subnet-0a6227d962143c7ca"
 }
 
 ##ALB-SG
 
 data "aws_security_group" "alb-sg" {
-  id = "sg-0d4e0e12d33ec2a9b"
+  id = "sg-0b0b7124169bb2789"
 }
 data "aws_subnet" "alb-public-1" {
-  id = "subnet-01c04b746a464ca8a"
+  id = "subnet-0b48a8917d61924d7"
 }
 data "aws_subnet" "alb-public-2" {
-  id = "subnet-02d4d017f7a2d462d"
+  id = "subnet-0ad066a9178119cbb"
 }
 
 ###VPC
 data "aws_vpc" "vpc-stack" {
-  id = "vpc-0903f5b0a7dcc45d3"
+  id = "vpc-002847ce027cbe983"
+}
+
+data "aws_internet_gateway" "int-gw" {
+  filter {
+    name   = "attachment.vpc-id"
+    values = [var.vpc_id]
+  }
 }
